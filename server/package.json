@@ -7,7 +7,8 @@
     "typescript": "tsc -w",
     "dev": "nodemon dist/index.js",
     "server": "node dist/index.js",
-    "postgres": "psql -p 5434 -h localhost -U postgres"
+    "postgres": "psql -p 5434 -h localhost -U postgres",
+    "migration:create": "mikro-orm migration:create"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,8 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.23.0",
+    "argon2": "^0.27.2",
+    "class-validator": "^0.13.1",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "mikro-orm": "^4.5.3",
