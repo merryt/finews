@@ -4,7 +4,7 @@ import {
   Field,
   InputType,
   Mutation,
-  Query
+  Query,
   ObjectType,
   Resolver,
 } from "type-graphql";
@@ -42,19 +42,18 @@ class UserResponse {
 export class UserResolver {
   @Query(() => User, { nullable: true })
   async me(@Ctx() { req, em }: MyContext) {
-    if (!req.session.userId) {
+    if (!req.session.UserID) {
       return null;
     }
 
-    const user = await em.findOne(User, { id: req.session.userId });
+    const user = await em.findOne(User, { id: req.session.UserID });
     return user;
   }
 
-  @Query(()=> [User])
-  users(@Ctx() { em }: MyContext){
-    return em.find(User, {})
+  @Query(() => [User])
+  users(@Ctx() { em }: MyContext) {
+    return em.find(User, {});
   }
-
 
   @Mutation(() => UserResponse)
   async register(
@@ -144,7 +143,7 @@ export class UserResolver {
       };
     }
 
-    req.session.userId = user.id;
+    req.session.UserID = user.id;
 
     return { user };
   }
